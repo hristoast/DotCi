@@ -29,12 +29,14 @@ import com.groupon.jenkins.buildtype.util.shell.ShellCommands;
 import com.groupon.jenkins.extensions.DotCiExtensionsHelper;
 import com.groupon.jenkins.git.GitUrl;
 import com.groupon.jenkins.notifications.PostBuildNotifier;
+import hudson.EnvVars;
 import hudson.matrix.Axis;
 import hudson.matrix.AxisList;
 import hudson.matrix.Combination;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -142,6 +144,16 @@ public class BuildConfiguration {
 
     public String getDockerComposeFileName() {
         return config.get("docker-compose-file") !=null ? (String) config.get("docker-compose-file") : "docker-compose.yml";
+    }
+
+    public Map<String, String> getDockerComposeEnvVars() {
+        String composeFile = "docker-compose.yml";
+        Map<String, String> envVars = new HashMap<String, String>();
+        if (config.get("docker-compose-file") != null) {
+            composeFile = config.get("docker-compose-file").toString();
+        }
+        envVars.put("DOTCI_DOCKER_COMPOSE_FILE", composeFile);
+        return envVars;
     }
 
     public static ShellCommands getCheckoutCommands(Map<String, Object> dotCiEnvVars) {
