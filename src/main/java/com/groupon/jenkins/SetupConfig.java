@@ -47,13 +47,20 @@ public class SetupConfig extends GlobalConfiguration {
     private String label;
     private String fromEmailAddress;
     private String defaultBuildType;
-
-    private boolean privateRepoSupport;
     private boolean defaultToNewUi;
+
+    private boolean useGithub;
+    private boolean githubPrivateRepoSupport;
     private String githubApiUrl;
     private String githubWebUrl;
     private String githubClientID;
     private String githubClientSecret;
+    private boolean useGilab;
+    private String gitlabWebURL;
+    private boolean useGogits;
+    private String gogitsApiURL;
+    private String gogitsWebURL;
+    private String gogitsAppToken;
     private String deployKey;
     private AbstractModule guiceModule;
     private transient Injector injector;
@@ -149,7 +156,7 @@ public class SetupConfig extends GlobalConfiguration {
 
 
     public boolean hasPrivateRepoSupport() {
-        return getPrivateRepoSupport();
+        return getGithubPrivateRepoSupport();
     }
 
 
@@ -165,11 +172,15 @@ public class SetupConfig extends GlobalConfiguration {
         this.defaultBuildType = defaultBuildType;
     }
 
-    public void setPrivateRepoSupport(boolean privateRepoSupport) {
-        this.privateRepoSupport = privateRepoSupport;
+    public void setUseGithub(boolean useGithub){
+        this.useGithub = useGithub;
     }
-    public boolean getPrivateRepoSupport() {
-        return privateRepoSupport;
+
+    public void setGithubPrivateRepoSupport(boolean githubPrivateRepoSupport) {
+        this.githubPrivateRepoSupport = githubPrivateRepoSupport;
+    }
+    public boolean getGithubPrivateRepoSupport() {
+        return githubPrivateRepoSupport;
     }
 
     public String getGithubApiUrl() {
@@ -205,6 +216,54 @@ public class SetupConfig extends GlobalConfiguration {
 
     public void setGithubClientSecret(String githubClientSecret) {
         this.githubClientSecret = githubClientSecret;
+    }
+
+    public void setUseGitlab(boolean useGilab){
+        this.useGilab = useGilab;
+    }
+
+     public String getGitlabWebURL() {
+         return gitlabWebURL;
+     }
+
+    public void setGitlabWebURL(String gitlabWebURL) {
+        this.gitlabWebURL = gitlabWebURL;
+    }
+
+    public void setUseGogits(boolean useGogits){
+        this.useGogits = useGogits;
+    }
+
+    public String getGogitsApiURL() {
+        if (!StringUtils.isEmpty(gogitsWebURL) && StringUtils.isEmpty(gogitsApiURL)) {
+            if (gogitsWebURL.endsWith("/")) {
+                return gogitsWebURL + "api/v1/user/repos";
+            } else {
+                return gogitsWebURL + "/api/v1/user/repos";
+            }
+        } else {
+            return this.gogitsApiURL;
+        }
+    }
+
+    public void setGogitsApiURL(String gogitsApiURL) {
+        this.gogitsApiURL = gogitsApiURL;
+    }
+
+    public String getGogitsWebURL() {
+        return gogitsWebURL;
+    }
+
+    public void setGogitsWebURL(String gogitsWebURL) {
+        this.gogitsWebURL = gogitsWebURL;
+    }
+
+    public String getGogitsAppToken() {
+        return gogitsAppToken;
+    }
+
+    public void setGogitsAppToken(String gogitsAppToken) {
+        this.gogitsAppToken = gogitsAppToken;
     }
 
     public DynamicBuildRepository getDynamicBuildRepository() {

@@ -58,29 +58,52 @@ THE SOFTWARE.
                       <f:checkbox name="dotci.defaultToNewUi" checked="${instance.defaultToNewUi}"/>
                   </f:entry>
 
-                    <f:entry title="Github Web Url">
-                      <f:textbox name="dotci.githubWebUrl" value="${instance.githubWebUrl}"/>
-                    </f:entry>
+                  <f:section title="Git Providers">
+                      <f:block>
+                          <table>
+                              <f:optionalBlock name="dotci.github" title="Github">
+                                  <f:entry title="Github Web Url">
+                                      <f:textbox name="dotci.githubWebUrl" value="${instance.githubWebUrl}"/>
+                                   </f:entry>
 
-                   <f:entry title="Github Api Url">
-                     <f:textbox name="dotci.githubApiUrl" value="${instance.githubApiUrl}"/>
-                   </f:entry>
+                                   <f:entry title="Github Api Url">
+                                       <f:textbox name="dotci.githubApiUrl" value="${instance.githubApiUrl}"/>
+                                   </f:entry>
 
-                   <f:entry title="Github Client ID">
-                     <f:textbox name="dotci.githubClientID" value="${instance.githubClientID}"/>
-                   </f:entry>
+                                   <f:entry title="Github Client ID">
+                                       <f:textbox name="dotci.githubClientID" value="${instance.githubClientID}"/>
+                                   </f:entry>
 
-                   <f:entry title="Github Client Secret">
-                     <f:textbox name="dotci.githubClientSecret" value="${instance.githubClientSecret}"/>
-                   </f:entry>
+                                   <f:entry title="Github Client Secret">
+                                       <f:textbox name="dotci.githubClientSecret" value="${instance.githubClientSecret}"/>
+                                   </f:entry>
 
-                   <f:entry title="Enable private repository support">
-                      <f:checkbox name="dotci.privateRepoSupport" checked="${instance.privateRepoSupport}"/>
-                   </f:entry>
+                                   <f:entry title="Enable private repository support">
+                                      <f:checkbox name="dotci.privateRepoSupport" checked="${instance.privateRepoSupport}"/>
+                                    </f:entry>
 
-                    <f:entry title="Github callback url">
-                       <f:textbox name="dotci.githubCallbackUrl" value="${instance.githubCallbackUrl}"/>
-                    </f:entry>
-
+                                    <f:entry title="Github callback url">
+                                       <f:textbox name="dotci.githubCallbackUrl" value="${instance.githubCallbackUrl}"/>
+                                    </f:entry>
+                              </f:optionalBlock>
+                              <f:optionalBlock name="dotci.gitlab" title="Gitlab">
+                                  <f:entry title="Gitlab Web URL">
+                                      <f:textbox name="dotci.gitlabWebURL" value="${instance.gitlabWebURL}"/>
+                                   </f:entry>
+                              </f:optionalBlock>
+                              <f:optionalBlock name="dotci.gogits" title="Gogits">
+                                  <f:entry title="Gogits API URL">
+                                      <f:textbox name="dotci.gogitsApiURL" value="${instance.gogitsApiURL}"/>
+                                   </f:entry>
+                                  <f:entry title="Gogits Web URL">
+                                      <f:textbox name="dotci.gogitsWebURL" value="${instance.gogitsWebURL}"/>
+                                   </f:entry>
+                                  <f:entry title="Gogits Application Token">
+                                      <f:textbox name="dotci.gogitsAppToken" value="${instance.gogitsAppToken}"/>
+                                   </f:entry>
+                              </f:optionalBlock>
+                          </table>
+                      </f:block>
+                  </f:section>
     </f:section>
 </j:jelly>
